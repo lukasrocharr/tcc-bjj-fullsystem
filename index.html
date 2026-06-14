@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sua Logo – Brazilian Jiu-Jitsu</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@1,400;1,600&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black:   #0a0a0a;
+      --dark:    #111111;
+      --card:    #161616;
+      --border:  #222222;
+      --gold:    #c9a84c;
+      --gold2:   #e8c96a;
+      --white:   #f0ede6;
+      --muted:   #888880;
+      --red:     #8b1a1a;
+      --ff-head: 'Bebas Neue', sans-serif;
+      --ff-body: 'Montserrat', sans-serif;
+      --ff-italic:'Playfair Display', serif;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { background: var(--black); color: var(--white); font-family: var(--ff-body); overflow-x: hidden; }
+    img  { display: block; max-width: 100%; }
+    a    { text-decoration: none; color: inherit; }
+    ul   { list-style: none; }
+
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--black); }
+    ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 2px; }
+
+    .container { width: 90%; max-width: 1200px; margin: 0 auto; }
+
+    .tag {
+      display: inline-block; font-size: .65rem; letter-spacing: .18em;
+      text-transform: uppercase; color: var(--gold); border: 1px solid var(--gold);
+      padding: 4px 12px; border-radius: 2px; margin-bottom: 1rem;
+    }
+    .section-title {
+      font-family: var(--ff-head); font-size: clamp(2.4rem, 5vw, 4rem);
+      letter-spacing: .04em; line-height: 1; color: var(--white);
+    }
+    .gold { color: var(--gold); }
+    .btn {
+      display: inline-flex; align-items: center; gap: .5rem;
+      font-family: var(--ff-body); font-size: .78rem; font-weight: 600;
+      letter-spacing: .14em; text-transform: uppercase; padding: 14px 32px;
+      border-radius: 2px; cursor: pointer; transition: all .25s ease;
+    }
+    .btn-gold { background: var(--gold); color: var(--black); }
+    .btn-gold:hover { background: var(--gold2); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(201,168,76,.3); }
+    .btn-outline { background: transparent; color: var(--white); border: 1px solid rgba(240,237,230,.3); }
+    .btn-outline:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+
+    /* LOADER */
+    #loader {
+      position: fixed; inset: 0; z-index: 9999; background: var(--black);
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column; gap: 1.5rem;
+      transition: opacity .6s ease, visibility .6s ease;
+    }
+    #loader.hide { opacity: 0; visibility: hidden; }
+    .loader-logo { font-family: var(--ff-head); font-size: 3rem; letter-spacing: .2em; color: var(--gold); }
+    .loader-bar  { width: 160px; height: 2px; background: var(--border); border-radius: 1px; overflow: hidden; }
+    .loader-fill { height: 100%; background: var(--gold); width: 0%; animation: load 1.4s ease forwards; }
+    @keyframes load { to { width: 100%; } }
+
+    /* NAVBAR */
+    #navbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 1.2rem 0; transition: background .4s ease, padding .4s ease, box-shadow .4s ease;
+    }
+    #navbar.scrolled {
+      background: rgba(10,10,10,.96); backdrop-filter: blur(10px);
+      padding: .8rem 0; box-shadow: 0 1px 0 var(--border);
+    }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo  { font-family: var(--ff-head); font-size: 1.7rem; letter-spacing: .15em; color: var(--white); display: flex; align-items: center; gap: .5rem; }
+    .nav-logo span { color: var(--gold); }
+    .nav-logo-dot { width: 8px; height: 8px; background: var(--gold); border-radius: 50%; display: inline-block; }
+    .nav-links { display: flex; align-items: center; gap: 2rem; }
+    .nav-links a { font-size: .72rem; font-weight: 600; letter-spacing: .13em; text-transform: uppercase; color: rgba(240,237,230,.7); transition: color .2s; position: relative; }
+    .nav-links a::after { content: ''; position: absolute; bottom: -3px; left: 0; width: 0; height: 1px; background: var(--gold); transition: width .25s ease; }
+    .nav-links a:hover { color: var(--white); }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-cta { margin-left: .5rem; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--white); border-radius: 1px; transition: all .3s ease; }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .mobile-menu {
+      display: none; position: fixed; inset: 0; z-index: 90;
+      background: var(--dark); flex-direction: column; align-items: center;
+      justify-content: center; gap: 2rem; opacity: 0; transition: opacity .3s ease;
+    }
+    .mobile-menu.open { opacity: 1; }
+    .mobile-menu a { font-family: var(--ff-head); font-size: 2.2rem; letter-spacing: .1em; color: var(--white); transition: color .2s; }
+    .mobile-menu a:hover { color: var(--gold); }
+
+    /* HERO */
+    #hero { position: relative; min-height: 100vh; display: flex; align-items: center; overflow: hidden; }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        linear-gradient(135deg, rgba(10,10,10,.92) 0%, rgba(10,10,10,.6) 50%, rgba(10,10,10,.88) 100%),
+        url('https://images.unsplash.com/photo-1555597673-b21d5c935865?w=1600&q=80') center/cover no-repeat;
+    }
+    .hero-bg::after {
+      content: ''; position: absolute; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.04'/%3E%3C/svg%3E");
+      opacity: .4;
+    }
+    .hero-line { position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: linear-gradient(to bottom, transparent, rgba(201,168,76,.15), transparent); pointer-events: none; }
+    .hero-content { position: relative; z-index: 2; max-width: 760px; }
+    .hero-eyebrow { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; opacity: 0; animation: fadeUp .7s .3s ease forwards; }
+    .hero-eyebrow-line { width: 40px; height: 1px; background: var(--gold); }
+    .hero-eyebrow span { font-size: .65rem; letter-spacing: .25em; text-transform: uppercase; color: var(--gold); font-weight: 600; }
+    .hero-title { font-family: var(--ff-head); font-size: clamp(4rem, 9vw, 8rem); line-height: .95; letter-spacing: .02em; margin-bottom: 1rem; opacity: 0; animation: fadeUp .7s .5s ease forwards; }
+    .hero-subtitle { font-family: var(--ff-italic); font-size: clamp(1rem, 2.2vw, 1.4rem); font-style: italic; color: rgba(240,237,230,.6); margin-bottom: 2.5rem; max-width: 520px; line-height: 1.6; opacity: 0; animation: fadeUp .7s .7s ease forwards; }
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; opacity: 0; animation: fadeUp .7s .9s ease forwards; }
+    .hero-scroll { position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%); z-index: 2; display: flex; flex-direction: column; align-items: center; gap: .5rem; opacity: 0; animation: fadeIn 1s 1.4s ease forwards; }
+    .hero-scroll span { font-size: .6rem; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); }
+    .scroll-line { width: 1px; height: 40px; background: linear-gradient(to bottom, var(--muted), transparent); animation: scrollPulse 2s infinite; }
+    @keyframes scrollPulse { 0%,100% { opacity:.4; transform:scaleY(1); } 50% { opacity:1; transform:scaleY(1.3); } }
+    .hero-stats { position: absolute; bottom: 0; right: 0; z-index: 2; display: flex; border-top: 1px solid var(--border); border-left: 1px solid var(--border); opacity: 0; animation: fadeIn .7s 1.1s ease forwards; }
+    .stat-item { padding: 1.2rem 2rem; border-right: 1px solid var(--border); text-align: center; }
+    .stat-item:last-child { border-right: none; }
+    .stat-num { font-family: var(--ff-head); font-size: 2rem; color: var(--gold); letter-spacing: .05em; }
+    .stat-label { font-size: .6rem; letter-spacing: .15em; text-transform: uppercase; color: var(--muted); margin-top: .2rem; }
+
+    @keyframes fadeUp { from { opacity:0; transform:translateY(28px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+
+    /* SOBRE */
+    #sobre { padding: 7rem 0; position: relative; overflow: hidden; }
+    #sobre::before {
+      content: 'BJJ'; position: absolute; right: -2%; top: 50%; transform: translateY(-50%);
+      font-family: var(--ff-head); font-size: clamp(8rem, 16vw, 18rem);
+      color: rgba(201,168,76,.04); line-height: 1; pointer-events: none; letter-spacing: .1em;
+    }
+    .sobre-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    .sobre-img-wrap { position: relative; }
+    .sobre-img-badge {
+      position: absolute; bottom: -1.5rem; right: -1.5rem;
+      background: var(--gold); color: var(--black); padding: 1.5rem;
+      font-family: var(--ff-head); text-align: center; line-height: 1.1; z-index: 2;
+    }
+    .sobre-img-badge .badge-num { font-size: 2.8rem; display: block; }
+    .sobre-img-badge .badge-text { font-size: .75rem; letter-spacing: .1em; display: block; }
+    .sobre-img-frame { position: absolute; top: -1.2rem; left: -1.2rem; right: 1.2rem; bottom: 1.2rem; border: 1px solid rgba(201,168,76,.25); border-radius: 2px; pointer-events: none; z-index: 0; }
+    .sobre-desc { font-size: .95rem; line-height: 1.85; color: rgba(240,237,230,.7); margin: 1.5rem 0 2.5rem; max-width: 500px; }
+    .sobre-values { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 2.5rem; }
+    .value-card { background: var(--card); border: 1px solid var(--border); padding: 1.2rem 1.4rem; border-radius: 2px; transition: border-color .25s, transform .25s; }
+    .value-card:hover { border-color: var(--gold); transform: translateY(-3px); }
+    .value-icon { font-size: 1.4rem; margin-bottom: .5rem; }
+    .value-name { font-family: var(--ff-head); font-size: 1.1rem; letter-spacing: .08em; color: var(--gold); }
+    .value-desc { font-size: .72rem; color: var(--muted); margin-top: .2rem; letter-spacing: .05em; }
+
+    /* DIVIDER */
+    .divider { width: 100%; overflow: hidden; background: var(--dark); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 1.3rem 0; }
+    .marquee-track { display: flex; gap: 0; animation: marquee 24s linear infinite; white-space: nowrap; }
+    .marquee-item { display: flex; align-items: center; gap: 2rem; padding: 0 2rem; }
+    .marquee-item span { font-family: var(--ff-head); font-size: 1.1rem; letter-spacing: .2em; color: rgba(240,237,230,.18); text-transform: uppercase; }
+    .marquee-item .dot { width: 5px; height: 5px; background: var(--gold); border-radius: 50%; opacity: .5; flex-shrink: 0; }
+    @keyframes marquee { from { transform:translateX(0); } to { transform:translateX(-50%); } }
+
+    /* MODALIDADES */
+    #modalidades { padding: 7rem 0; background: var(--dark); }
+    .section-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 3.5rem; flex-wrap: wrap; gap: 1.5rem; }
+    .section-header-left { max-width: 560px; }
+    .section-sub { font-size: .88rem; color: var(--muted); margin-top: .8rem; line-height: 1.7; }
+    .cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5px; }
+    .mod-card { position: relative; overflow: hidden; height: 360px; cursor: pointer; }
+    .mod-card-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,.85) 0%, transparent 55%); transition: background .3s; z-index: 1; }
+    .mod-card:hover .mod-card-overlay { background: linear-gradient(to top, rgba(0,0,0,.92) 0%, rgba(0,0,0,.2) 55%); }
+    .mod-card-content { position: absolute; bottom: 0; left: 0; right: 0; padding: 1.8rem; z-index: 2; }
+    .mod-card-tag { font-size: .6rem; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: .4rem; opacity: 0; transform: translateY(8px); transition: all .3s .05s ease; }
+    .mod-card:hover .mod-card-tag { opacity: 1; transform: translateY(0); }
+    .mod-card-title { font-family: var(--ff-head); font-size: 1.8rem; letter-spacing: .06em; margin-bottom: .5rem; }
+    .mod-card-desc { font-size: .78rem; color: rgba(240,237,230,.7); line-height: 1.6; max-height: 0; overflow: hidden; transition: max-height .3s ease; }
+    .mod-card:hover .mod-card-desc { max-height: 80px; }
+
+    /* GALERIA */
+    #galeria { padding: 7rem 0; }
+    .gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: 220px 220px; gap: 4px; margin-top: 3rem; }
+    .gallery-item { overflow: hidden; position: relative; cursor: pointer; }
+    .gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+    .gallery-item:nth-child(4) { grid-column: span 2; }
+    .gallery-overlay { position: absolute; inset: 0; background: rgba(201,168,76,.0); transition: background .3s ease; display: flex; align-items: center; justify-content: center; z-index: 2; }
+    .gallery-item:hover .gallery-overlay { background: rgba(201,168,76,.12); }
+    .gallery-overlay-icon { width: 44px; height: 44px; border: 1px solid var(--white); border-radius: 50%; display: flex; align-items: center; justify-content: center; opacity: 0; transform: scale(.5); transition: all .3s ease; color: var(--white); font-size: 1.3rem; }
+    .gallery-item:hover .gallery-overlay-icon { opacity: 1; transform: scale(1); }
+
+    /* PROFESSOR */
+    #prof { padding: 7rem 0; background: var(--dark); position: relative; overflow: hidden; }
+    #prof::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 20% 50%, rgba(139,26,26,.12) 0%, transparent 60%), radial-gradient(circle at 80% 50%, rgba(201,168,76,.07) 0%, transparent 55%); }
+    .prof-inner { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    .prof-text .section-title { margin: .8rem 0 1.2rem; }
+    .prof-desc { font-size: .92rem; line-height: 1.85; color: rgba(240,237,230,.65); margin-bottom: 2rem; }
+    .prof-list { display: flex; flex-direction: column; gap: .8rem; margin-bottom: 2.5rem; }
+    .prof-list li { display: flex; align-items: center; gap: .8rem; font-size: .82rem; color: rgba(240,237,230,.8); }
+    .prof-list li::before { content: ''; display: block; width: 20px; height: 1px; background: var(--gold); flex-shrink: 0; }
+    .prof-visual { position: relative; }
+    .prof-belt { position: absolute; top: 2rem; left: -2rem; background: var(--black); border: 1px solid var(--border); padding: 1rem 1.4rem; display: flex; flex-direction: column; gap: .3rem; z-index: 2; }
+    .belt-stripe { height: 12px; border-radius: 1px; }
+    .belt-stripe.b1 { background: #111; width: 100px; }
+    .belt-stripe.b2 { background: var(--red); width: 100px; }
+    .belt-stripe.b3 { background: #111; width: 100px; }
+    .belt-stripe.b4 { background: var(--gold); width: 40px; }
+    .belt-label { font-size: .6rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-top: .5rem; }
+
+    /* CONTATO */
+    #contato { padding: 7rem 0; position: relative; overflow: hidden; }
+    .cta-wrap { background: var(--card); border: 1px solid var(--border); border-radius: 2px; padding: 5rem 4rem; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; position: relative; overflow: hidden; }
+    .cta-wrap::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(to right, transparent, var(--gold), transparent); }
+    .cta-bg-text { position: absolute; right: -1%; bottom: -5%; font-family: var(--ff-head); font-size: clamp(6rem,14vw,16rem); color: rgba(201,168,76,.04); line-height: 1; pointer-events: none; letter-spacing: .08em; }
+    .cta-left .section-title { margin: .8rem 0 1rem; }
+    .cta-sub { font-size: .88rem; color: var(--muted); line-height: 1.7; margin-bottom: 2rem; }
+    .cta-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .cta-right { position: relative; z-index: 1; }
+    .form-group { display: flex; flex-direction: column; gap: .4rem; margin-bottom: 1.2rem; }
+    .form-group label { font-size: .65rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+    .form-group input, .form-group select, .form-group textarea { background: rgba(255,255,255,.04); border: 1px solid var(--border); border-radius: 2px; padding: 12px 14px; color: var(--white); font-family: var(--ff-body); font-size: .85rem; outline: none; transition: border-color .2s; width: 100%; }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--gold); }
+    .form-group select option { background: var(--dark); }
+    .form-group textarea { resize: none; height: 90px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+    /* FOOTER */
+    footer { background: var(--dark); border-top: 1px solid var(--border); padding: 4rem 0 2rem; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+    .footer-brand .nav-logo { font-size: 2rem; margin-bottom: 1rem; }
+    .footer-about { font-size: .8rem; color: var(--muted); line-height: 1.8; margin-bottom: 1.5rem; max-width: 260px; }
+    .footer-socials { display: flex; gap: .6rem; }
+    .social-btn { width: 34px; height: 34px; border: 1px solid var(--border); border-radius: 2px; display: flex; align-items: center; justify-content: center; font-size: .9rem; color: var(--muted); transition: all .2s; cursor: pointer; }
+    .social-btn:hover { border-color: var(--gold); color: var(--gold); }
+    .footer-col h4 { font-size: .65rem; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.2rem; }
+    .footer-col ul { display: flex; flex-direction: column; gap: .7rem; }
+    .footer-col ul a { font-size: .8rem; color: var(--muted); transition: color .2s; }
+    .footer-col ul a:hover { color: var(--white); }
+    .footer-contact-item { display: flex; align-items: flex-start; gap: .6rem; font-size: .8rem; color: var(--muted); margin-bottom: .8rem; line-height: 1.5; }
+    .footer-contact-item .icon { color: var(--gold); flex-shrink: 0; }
+    .footer-bottom { border-top: 1px solid var(--border); padding-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .footer-bottom p { font-size: .72rem; color: rgba(136,136,128,.5); }
+    .footer-bottom p span { color: var(--gold); }
+
+    /* BACK TO TOP */
+    #btt { position: fixed; bottom: 2rem; right: 2rem; z-index: 50; width: 44px; height: 44px; background: var(--gold); border-radius: 2px; display: flex; align-items: center; justify-content: center; cursor: pointer; opacity: 0; pointer-events: none; transform: translateY(10px); transition: all .3s ease; color: var(--black); font-size: 1.1rem; }
+    #btt.show { opacity: 1; pointer-events: auto; transform: translateY(0); }
+    #btt:hover { background: var(--gold2); transform: translateY(-3px); }
+
+    /* PHOTO PLACEHOLDER */
+    .photo-ph {
+      background: #000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: .7rem;
+      width: 100%;
+      height: 100%;
+      color: rgba(255,255,255,.22);
+      font-family: var(--ff-body);
+      font-size: .68rem;
+      font-weight: 600;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+    .photo-ph svg { opacity: .18; }
+
+    /* REVEAL */
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity .65s ease, transform .65s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: .1s; }
+    .reveal-delay-2 { transition-delay: .2s; }
+    .reveal-delay-3 { transition-delay: .3s; }
+
+    /* RESPONSIVE */
+    @media (max-width: 1024px) {
+      .sobre-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .cards-grid { grid-template-columns: 1fr 1fr; }
+      .cards-grid .mod-card:last-child { grid-column: span 2; height: 240px; }
+      .prof-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .prof-visual { max-width: 420px; }
+      .cta-wrap { grid-template-columns: 1fr; gap: 2.5rem; padding: 3rem 2rem; }
+    }
+    @media (max-width: 768px) {
+      .nav-links { display: none; } .nav-cta { display: none; }
+      .hamburger { display: flex; } .hero-stats { display: none; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+      .gallery-item { height: 180px; }
+      .gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 1; height: 240px; }
+      .gallery-item:nth-child(4) { grid-column: span 2; }
+      .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .section-header { flex-direction: column; align-items: flex-start; }
+      .form-row { grid-template-columns: 1fr; }
+      .sobre-values { grid-template-columns: 1fr 1fr; }
+      .hero-btns { flex-direction: column; gap: .7rem; }
+      .hero-btns .btn { justify-content: center; }
+      .cards-grid { grid-template-columns: 1fr; }
+      .cards-grid .mod-card:last-child { grid-column: span 1; }
+    }
+    @media (max-width: 480px) {
+      .sobre-values { grid-template-columns: 1fr; }
+      .cta-btns { flex-direction: column; }
+      .cta-btns .btn { text-align: center; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="loader">
+    <div class="loader-logo">SUA LOGO</div>
+    <div class="loader-bar"><div class="loader-fill"></div></div>
+  </div>
+
+  <div id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">&#8593;</div>
+
+  <nav class="mobile-menu" id="mobileMenu">
+    <a href="#sobre"       onclick="closeMobile()">Sobre</a>
+    <a href="#modalidades" onclick="closeMobile()">Modalidades</a>
+    <a href="#galeria"     onclick="closeMobile()">Galeria</a>
+    <a href="#prof"        onclick="closeMobile()">Professores</a>
+    <a href="#contato"     onclick="closeMobile()">Contato</a>
+  </nav>
+
+  <header id="navbar">
+    <div class="container nav-inner">
+      <a href="#" class="nav-logo"><span class="nav-logo-dot"></span>SUA <span>LOGO</span></a>
+      <ul class="nav-links">
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#modalidades">Modalidades</a></li>
+        <li><a href="#galeria">Galeria</a></li>
+        <li><a href="#prof">Professores</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+      <a href="#contato" class="btn btn-gold nav-cta">Matricule-se</a>
+      <div class="hamburger" id="hamburger" onclick="toggleMobile()">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-line"></div>
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-eyebrow">
+          <div class="hero-eyebrow-line"></div>
+          <span>Brazilian Jiu-Jitsu &nbsp;·&nbsp; Arte Marcial</span>
+        </div>
+        <h1 class="hero-title">CORPO.<br>MENTE.<br><span class="gold">ESPÍRITO.</span></h1>
+        <p class="hero-subtitle">"Desenvolvimento físico e mental através da arte marcial mais completa do mundo."</p>
+        <div class="hero-btns">
+          <a href="#contato" class="btn btn-gold">Comece Agora</a>
+          <a href="#sobre"   class="btn btn-outline">Conheça a Academia</a>
+        </div>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item"><div class="stat-num">15+</div><div class="stat-label">Anos de experiência</div></div>
+      <div class="stat-item"><div class="stat-num">800+</div><div class="stat-label">Alunos formados</div></div>
+      <div class="stat-item"><div class="stat-num">40+</div><div class="stat-label">Títulos conquistados</div></div>
+    </div>
+    <div class="hero-scroll"><span>Scroll</span><div class="scroll-line"></div></div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="divider">
+    <div class="marquee-track">
+      <div class="marquee-item"><span>Jiu-Jitsu</span><div class="dot"></div></div>
+      <div class="marquee-item"><span>Disciplina</span><div class="dot"></div></div>
+      <div class="marquee-item"><span>Arte</span><div class="dot"></div></div>
+      <div class="marquee-item"><span>Resistência</span><div class="dot"></div></div>
+      <div class="marquee-item"><span>Técnica</span><div class="dot"></div></div>
+      <div class="marquee-item"><span>Respeito</span><div class="dot"></div></div>
+      <div class="marquee-item"><span>Superação</span><div class="dot"></div></div>
+      <div class="marquee-item"><span>Camaradagem</span><div class="dot"></div></div>
+      <div class="marquee-item"><span>Jiu-Jitsu</span><div class="dot"></div></div>
+      <div class="marquee-item"><span>Disciplina</span><div class="dot"></div></div>
+      <div class="marquee-item"><span>Arte</span><div class="dot"></div></div>
+      <div class="marquee-item"><span>Resistência</span><div class="dot"></div></div>
+      <div class="marquee-item"><span>Técnica</span><div class="dot"></div></div>
+      <div class="marquee-item"><span>Respeito</span><div class="dot"></div></div>
+      <div class="marquee-item"><span>Superação</span><div class="dot"></div></div>
+      <div class="marquee-item"><span>Camaradagem</span><div class="dot"></div></div>
+    </div>
+  </div>
+
+  <!-- SOBRE -->
+  <section id="sobre">
+    <div class="container">
+      <div class="sobre-grid">
+        <div class="sobre-img-wrap reveal">
+          <div class="sobre-img-frame"></div>
+          <div class="photo-ph" style="height:520px;">
+            <svg width="52" height="52" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+            Sua Foto Aqui
+          </div>
+          <div class="sobre-img-badge">
+            <span class="badge-num">15</span>
+            <span class="badge-text">ANOS DE<br>TRADIÇÃO</span>
+          </div>
+        </div>
+        <div class="sobre-text reveal reveal-delay-2">
+          <span class="tag">Sobre Nós</span>
+          <h2 class="section-title">Transformando<br>Vidas com <span class="gold">Arte</span></h2>
+          <p class="sobre-desc">A Sua Logo Jiu-Jitsu é onde paixão, técnica e disciplina se unem. Aqui, os praticantes desenvolvem habilidades marciais, fortalecem corpo e mente, e criam laços de amizade duradouros. Cada aula é uma jornada de superação pessoal, onde o respeito e a camaradagem prevalecem.</p>
+          <div class="sobre-values">
+            <div class="value-card"><div class="value-icon">🥋</div><div class="value-name">Arte</div><div class="value-desc">Movimento preciso e criativo</div></div>
+            <div class="value-card"><div class="value-icon">🎯</div><div class="value-name">Técnica</div><div class="value-desc">Fundamentos sólidos e evoluídos</div></div>
+            <div class="value-card"><div class="value-icon">💪</div><div class="value-name">Resistência</div><div class="value-desc">Corpo e mente forjados no tatame</div></div>
+            <div class="value-card"><div class="value-icon">🧠</div><div class="value-name">Disciplina</div><div class="value-desc">Hábitos que transformam vidas</div></div>
+          </div>
+          <a href="#contato" class="btn btn-gold">Saiba mais</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODALIDADES -->
+  <section id="modalidades">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-header-left">
+          <span class="tag">Modalidades</span>
+          <h2 class="section-title">Para Cada<br><span class="gold">Nível & Idade</span></h2>
+          <p class="section-sub">Do iniciante ao competidor, temos a turma ideal para você evoluir no tatame.</p>
+        </div>
+        <a href="#contato" class="btn btn-outline">Ver todas</a>
+      </div>
+      <div class="cards-grid reveal reveal-delay-1">
+        <div class="mod-card">
+          <div class="photo-ph" style="position:absolute;inset:0;height:auto;">
+            <svg width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+            Sua Foto Aqui
+          </div>
+          <div class="mod-card-overlay"></div>
+          <div class="mod-card-content">
+            <div class="mod-card-tag">A partir de 16 anos</div>
+            <div class="mod-card-title">ADULTO</div>
+            <div class="mod-card-desc">Treinamento completo para adultos com foco em técnica, condicionamento e competição.</div>
+          </div>
+        </div>
+        <div class="mod-card">
+          <div class="photo-ph" style="position:absolute;inset:0;height:auto;">
+            <svg width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+            Sua Foto Aqui
+          </div>
+          <div class="mod-card-overlay"></div>
+          <div class="mod-card-content">
+            <div class="mod-card-tag">4 a 15 anos</div>
+            <div class="mod-card-title">KIDS</div>
+            <div class="mod-card-desc">Programa especial para crianças desenvolverem disciplina, respeito e confiança.</div>
+          </div>
+        </div>
+        <div class="mod-card">
+          <div class="photo-ph" style="position:absolute;inset:0;height:auto;">
+            <svg width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+            Sua Foto Aqui
+          </div>
+          <div class="mod-card-overlay"></div>
+          <div class="mod-card-content">
+            <div class="mod-card-tag">Nível avançado</div>
+            <div class="mod-card-title">COMPETITION</div>
+            <div class="mod-card-desc">Preparação específica para atletas que buscam resultados em alto nível.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALERIA -->
+  <section id="galeria">
+    <div class="container">
+      <div class="reveal" style="text-align:center;">
+        <span class="tag">Galeria</span>
+        <h2 class="section-title">Momentos no <span class="gold">Tatame</span></h2>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item reveal reveal-delay-1">
+          <div class="photo-ph" style="position:absolute;inset:0;height:auto;">
+            <svg width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+            Sua Foto Aqui
+          </div>
+          <div class="gallery-overlay"><div class="gallery-overlay-icon">+</div></div>
+        </div>
+        <div class="gallery-item reveal reveal-delay-2">
+          <div class="photo-ph" style="position:absolute;inset:0;height:auto;">
+            <svg width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+            Sua Foto Aqui
+          </div>
+          <div class="gallery-overlay"><div class="gallery-overlay-icon">+</div></div>
+        </div>
+        <div class="gallery-item reveal reveal-delay-3">
+          <div class="photo-ph" style="position:absolute;inset:0;height:auto;">
+            <svg width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+            Sua Foto Aqui
+          </div>
+          <div class="gallery-overlay"><div class="gallery-overlay-icon">+</div></div>
+        </div>
+        <div class="gallery-item reveal reveal-delay-2">
+          <div class="photo-ph" style="position:absolute;inset:0;height:auto;">
+            <svg width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+            Sua Foto Aqui
+          </div>
+          <div class="gallery-overlay"><div class="gallery-overlay-icon">+</div></div>
+        </div>
+        <div class="gallery-item reveal reveal-delay-3">
+          <div class="photo-ph" style="position:absolute;inset:0;height:auto;">
+            <svg width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+            Sua Foto Aqui
+          </div>
+          <div class="gallery-overlay"><div class="gallery-overlay-icon">+</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROFESSOR -->
+  <section id="prof">
+    <div class="container">
+      <div class="prof-inner">
+        <div class="prof-text reveal">
+          <span class="tag">Nosso Time</span>
+          <h2 class="section-title">Aprenda com<br>os <span class="gold">Melhores</span></h2>
+          <p class="prof-desc">Nossa equipe é formada por faixas-pretas altamente qualificados, com vasta experiência competitiva e paixão genuína pelo ensino. Cada professor é comprometido com sua evolução dentro e fora do tatame.</p>
+          <ul class="prof-list">
+            <li>Faixas-pretas credenciados pela CBJJ</li>
+            <li>Metodologia pedagógica estruturada</li>
+            <li>Acompanhamento individual do aluno</li>
+            <li>Campeões nacionais e internacionais</li>
+          </ul>
+          <a href="#contato" class="btn btn-gold">Agende uma aula experimental</a>
+        </div>
+        <div class="prof-visual reveal reveal-delay-2">
+          <div class="prof-belt">
+            <div class="belt-stripe b1"></div>
+            <div class="belt-stripe b2"></div>
+            <div class="belt-stripe b3"></div>
+            <div class="belt-stripe b4"></div>
+            <div class="belt-label">Faixa Preta – Coral</div>
+          </div>
+          <div class="photo-ph" style="height:480px;">
+            <svg width="52" height="52" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+            Sua Foto Aqui
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTATO -->
+  <section id="contato">
+    <div class="container">
+      <div class="cta-wrap reveal">
+        <div class="cta-bg-text">BJJ</div>
+        <div class="cta-left">
+          <span class="tag">Matricule-se</span>
+          <h2 class="section-title">Comece sua<br><span class="gold">Jornada Hoje</span></h2>
+          <p class="cta-sub">Sua primeira aula é experimental e gratuita. Venha conhecer a academia, os professores e sentir o tatame sob seus pés.</p>
+          <div class="cta-btns">
+            <a href="https://wa.me/5511999999999" target="_blank" class="btn btn-gold">💬 WhatsApp</a>
+            <a href="tel:+5511999999999" class="btn btn-outline">📞 Ligar</a>
+          </div>
+        </div>
+        <div class="cta-right">
+          <div class="form-row">
+            <div class="form-group"><label>Nome completo</label><input type="text" placeholder="Seu nome" /></div>
+            <div class="form-group"><label>Telefone</label><input type="tel" placeholder="(11) 9 0000-0000" /></div>
+          </div>
+          <div class="form-group">
+            <label>Modalidade de interesse</label>
+            <select>
+              <option value="">Selecione...</option>
+              <option>Jiu-Jitsu Adulto</option>
+              <option>Jiu-Jitsu Kids</option>
+              <option>Competition Team</option>
+            </select>
+          </div>
+          <div class="form-group"><label>Mensagem</label><textarea placeholder="Como podemos ajudar?"></textarea></div>
+          <button class="btn btn-gold" style="width:100%;justify-content:center;" onclick="handleForm(event)">Enviar mensagem →</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#" class="nav-logo"><span class="nav-logo-dot"></span>SUA <span>LOGO</span></a>
+          <p class="footer-about">Escola de Brazilian Jiu-Jitsu dedicada ao desenvolvimento físico e mental de nossos alunos através da arte marcial mais completa do mundo.</p>
+          <div class="footer-socials">
+            <div class="social-btn">&#9824;</div>
+            <div class="social-btn">f</div>
+            <div class="social-btn">▶</div>
+            <div class="social-btn">♪</div>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>A Academia</h4>
+          <ul>
+            <li><a href="#sobre">Sobre Nós</a></li>
+            <li><a href="#modalidades">Modalidades</a></li>
+            <li><a href="#prof">Professores</a></li>
+            <li><a href="#galeria">Galeria</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Institucional</h4>
+          <ul>
+            <li><a href="#">Metodologia</a></li>
+            <li><a href="#">Horários</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Política de Privacidade</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contato</h4>
+          <div class="footer-contact-item"><span class="icon">📍</span><span>Rua Exemplo, 100<br>Bairro – São Paulo, SP</span></div>
+          <div class="footer-contact-item"><span class="icon">📞</span><span>(11) 9 9999-9999</span></div>
+          <div class="footer-contact-item"><span class="icon">✉️</span><span>contato@sualogo.com.br</span></div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 <span>Sua Logo Jiu-Jitsu</span>. Todos os direitos reservados.</p>
+        <p>Feito com ❤️ para o tatame</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    window.addEventListener('load', () => {
+      setTimeout(() => document.getElementById('loader').classList.add('hide'), 1500);
+    });
+
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 60);
+      document.getElementById('btt').classList.toggle('show', window.scrollY > 400);
+    });
+
+    function toggleMobile() {
+      const menu = document.getElementById('mobileMenu');
+      const ham  = document.getElementById('hamburger');
+      if (menu.style.display === 'flex') { closeMobile(); return; }
+      menu.style.display = 'flex';
+      setTimeout(() => menu.classList.add('open'), 10);
+      ham.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeMobile() {
+      const menu = document.getElementById('mobileMenu');
+      const ham  = document.getElementById('hamburger');
+      menu.classList.remove('open'); ham.classList.remove('open');
+      document.body.style.overflow = '';
+      setTimeout(() => { menu.style.display = 'none'; }, 300);
+    }
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    function handleForm(e) {
+      e.preventDefault();
+      const btn = e.target;
+      btn.textContent = '✓ Mensagem enviada!';
+      btn.style.background = '#2d6a4f';
+      setTimeout(() => { btn.textContent = 'Enviar mensagem →'; btn.style.background = ''; }, 3000);
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+# Orquestracao Fase 1: PostgreSQL + backend Spring Boot.
+# O frontend Angular (na raiz do repo) roda via `npm start` apontando para :8080;
+# sera adicionado a este compose em fases futuras.
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: bjj_academy
+      POSTGRES_USER: bjj
+      POSTGRES_PASSWORD: bjj
+    ports:
+      - "5432:5432"
+    volumes:
+      - bjj_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U bjj -d bjj_academy"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  backend:
+    build: .
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DB_URL: jdbc:postgresql://db:5432/bjj_academy
+      DB_USERNAME: bjj
+      DB_PASSWORD: bjj
+      CORS_ORIGINS: http://localhost:4200
+      JWT_SECRET: Y2hhbmdlLW1lLXN1cGVyLXNlY3JldC1iamotYWNhZGVteS0yMDI2LXRjYy1rZXk=
+    ports:
+      - "8080:8080"
+
+volumes:
+  bjj_pgdata:

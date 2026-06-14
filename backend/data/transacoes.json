@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "tipo": "receita",
+    "categoria": "Mensalidades",
+    "descricao": "Mensalidades - Abril",
+    "valor": 3000,
+    "data": "2026-04-01",
+    "status": "confirmado"
+  },
+  {
+    "id": 2,
+    "tipo": "despesa",
+    "categoria": "Aluguel",
+    "descricao": "Aluguel do espaço",
+    "valor": 2000,
+    "data": "2026-04-05",
+    "status": "confirmado"
+  },
+  {
+    "id": 3,
+    "tipo": "receita",
+    "categoria": "Aulas Particulares",
+    "descricao": "Aulas particulares - Semana 1",
+    "valor": 500,
+    "data": "2026-04-10",
+    "status": "confirmado"
+  },
+  {
+    "id": 4,
+    "tipo": "despesa",
+    "categoria": "Materiais",
+    "descricao": "Compra de tatames",
+    "valor": 1500,
+    "data": "2026-04-12",
+    "status": "confirmado"
+  }
+]

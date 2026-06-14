@@ -1,0 +1,27 @@
+# Configuracao de testes: H2 em memoria (modo PostgreSQL) + Flyway.
+spring:
+  datasource:
+    url: jdbc:h2:mem:bjj_test;MODE=PostgreSQL;DB_CLOSE_DELAY=-1;DATABASE_TO_LOWER=TRUE
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+  jpa:
+    hibernate:
+      ddl-auto: validate
+  flyway:
+    enabled: true
+
+app:
+  jwt:
+    secret: dGVzdC1zZWNyZXQta2V5LWJqai1hY2FkZW15LTAxMjM0NTY3ODktdGNjLXRlc3Q=
+    access-token-expiration-minutes: 30
+    refresh-token-expiration-days: 7
+    issuer: bjj-academy
+  security:
+    max-login-attempts: 3
+    lockout-minutes: 15
+    password-reset-token-expiration-minutes: 30
+  cors:
+    allowed-origins: http://localhost:4200
+  notification:
+    provider: console

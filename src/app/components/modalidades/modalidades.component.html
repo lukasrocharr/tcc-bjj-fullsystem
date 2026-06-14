@@ -1,0 +1,30 @@
+<section id="modalidades">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-header-left">
+        <span class="tag">Modalidades</span>
+        <h2 class="section-title">Para Cada<br><span class="gold">Nível & Idade</span></h2>
+        <p class="section-sub">Do iniciante ao competidor, temos a turma ideal para você evoluir no tatame.</p>
+      </div>
+      <a href="#contato" class="btn btn-outline">Ver todas</a>
+    </div>
+    <div class="cards-grid reveal reveal-delay-1">
+      <div class="mod-card" *ngFor="let mod of modalidades">
+        <div class="photo-ph" style="position:absolute;inset:0;height:auto;">
+          <svg width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24">
+            <rect x="3" y="3" width="18" height="18" rx="2"/>
+            <circle cx="8.5" cy="8.5" r="1.5"/>
+            <path d="m21 15-5-5L5 21"/>
+          </svg>
+          Sua Foto Aqui
+        </div>
+        <div class="mod-card-overlay"></div>
+        <div class="mod-card-content">
+          <div class="mod-card-tag">{{ mod.tag }}</div>
+          <div class="mod-card-title">{{ mod.title }}</div>
+          <div class="mod-card-desc">{{ mod.description }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

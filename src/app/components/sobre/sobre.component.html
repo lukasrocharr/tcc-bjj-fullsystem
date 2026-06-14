@@ -1,0 +1,56 @@
+<section id="sobre">
+  <div class="container">
+    <div class="sobre-grid">
+      <div class="sobre-img-wrap reveal" (mouseenter)="pauseSlide()" (mouseleave)="resumeSlide()">
+        <div class="sobre-img-frame"></div>
+        <div class="sobre-slider">
+          <div
+            *ngFor="let image of images; let i = index"
+            class="sobre-slide"
+            [class.active]="i === currentIndex"
+            [style.backgroundImage]="'url(' + image + ')'"></div>
+        </div>
+        <div class="sobre-slider-indicators">
+          <button
+            *ngFor="let image of images; let i = index"
+            type="button"
+            class="indicator"
+            [class.active]="i === currentIndex"
+            (click)="goToSlide(i)"></button>
+        </div>
+        <div class="sobre-img-badge">
+          <span class="badge-num">15</span>
+          <span class="badge-text">ANOS DE<br>TRADIÇÃO</span>
+        </div>
+      </div>
+      <div class="sobre-text reveal reveal-delay-2">
+        <span class="tag">Sobre Nós</span>
+        <h2 class="section-title">Transformando<br>Vidas com <span class="gold">Arte</span></h2>
+        <p class="sobre-desc">A Sua Logo Jiu-Jitsu é onde paixão, técnica e disciplina se unem. Aqui, os praticantes desenvolvem habilidades marciais, fortalecem corpo e mente, e criam laços de amizade duradouros. Cada aula é uma jornada de superação pessoal, onde o respeito e a camaradagem prevalecem.</p>
+        <div class="sobre-values">
+          <div class="value-card">
+            <div class="value-icon">🥋</div>
+            <div class="value-name">Arte</div>
+            <div class="value-desc">Movimento preciso e criativo</div>
+          </div>
+          <div class="value-card">
+            <div class="value-icon">🎯</div>
+            <div class="value-name">Técnica</div>
+            <div class="value-desc">Fundamentos sólidos e evoluídos</div>
+          </div>
+          <div class="value-card">
+            <div class="value-icon">💪</div>
+            <div class="value-name">Resistência</div>
+            <div class="value-desc">Corpo e mente forjados no tatame</div>
+          </div>
+          <div class="value-card">
+            <div class="value-icon">🧠</div>
+            <div class="value-name">Disciplina</div>
+            <div class="value-desc">Hábitos que transformam vidas</div>
+          </div>
+        </div>
+        <a href="#contato" class="btn btn-gold">Saiba mais</a>
+      </div>
+    </div>
+  </div>
+</section>

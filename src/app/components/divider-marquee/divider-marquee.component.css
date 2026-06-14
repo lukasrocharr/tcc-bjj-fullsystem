@@ -1,0 +1,49 @@
+/* DIVIDER */
+.divider { 
+  width: 100%; 
+  overflow: hidden; 
+  background: var(--dark); 
+  border-top: 1px solid var(--border); 
+  border-bottom: 1px solid var(--border); 
+  padding: 1.3rem 0; 
+}
+
+.marquee-track { 
+  display: flex; 
+  gap: 0; 
+  animation: marquee 24s linear infinite; 
+  white-space: nowrap; 
+}
+
+.marquee-item { 
+  display: flex; 
+  align-items: center; 
+  gap: 2rem; 
+  padding: 0 2rem; 
+}
+
+.marquee-item span { 
+  font-family: var(--ff-head); 
+  font-size: 1.1rem; 
+  letter-spacing: .2em; 
+  color: rgba(240,237,230,.18); 
+  text-transform: uppercase; 
+}
+
+.marquee-item .dot { 
+  width: 5px; 
+  height: 5px; 
+  background: var(--gold); 
+  border-radius: 50%; 
+  opacity: .5; 
+  flex-shrink: 0; 
+}
+
+@keyframes marquee { 
+  from { 
+    transform: translateX(0); 
+  } 
+  to { 
+    transform: translateX(-50%); 
+  } 
+}

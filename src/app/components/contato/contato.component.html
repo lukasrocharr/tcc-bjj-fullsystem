@@ -1,0 +1,50 @@
+<section id="contato">
+  <div class="container">
+    <div class="cta-wrap reveal">
+      <div class="cta-bg-text">BJJ</div>
+      <div class="cta-left">
+        <span class="tag">Matricule-se</span>
+        <h2 class="section-title">Comece sua<br><span class="gold">Jornada Hoje</span></h2>
+        <p class="cta-sub">Sua primeira aula é experimental e gratuita. Venha conhecer a academia, os professores e sentir o tatame sob seus pés.</p>
+        <div class="cta-btns">
+          <a href="https://wa.me/5511999999999" target="_blank" class="btn btn-gold">💬 WhatsApp</a>
+          <a href="tel:+5511999999999" class="btn btn-outline">📞 Ligar</a>
+        </div>
+      </div>
+      <div class="cta-right">
+        <form (ngSubmit)="handleForm($event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Nome completo</label>
+              <input type="text" placeholder="Seu nome" [(ngModel)]="formData.nome" name="nome" />
+            </div>
+            <div class="form-group">
+              <label>Telefone</label>
+              <input type="tel" placeholder="(11) 9 0000-0000" [(ngModel)]="formData.telefone" name="telefone" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Modalidade de interesse</label>
+            <select [(ngModel)]="formData.modalidade" name="modalidade">
+              <option value="">Selecione...</option>
+              <option>Jiu-Jitsu Adulto</option>
+              <option>Jiu-Jitsu Kids</option>
+              <option>Competition Team</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Mensagem</label>
+            <textarea placeholder="Como podemos ajudar?" [(ngModel)]="formData.mensagem" name="mensagem"></textarea>
+          </div>
+          <button type="submit" 
+                  class="btn btn-gold" 
+                  style="width:100%;justify-content:center;" 
+                  [class.submitted]="isSubmitted"
+                  [style.background]="isSubmitted ? '#2d6a4f' : ''">
+            {{ submitButtonText }}
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,13 @@
+{
+  "usuarios": [
+    {
+      "id": 1,
+      "username": "admin",
+      "password": "admin123",
+      "email": "admin@bjj.com",
+      "nome": "Administrador",
+      "token": "c032d268-31e6-4430-8a6d-d09e3ba23d54"
+    }
+  ],
+  "sessoes": []
+}

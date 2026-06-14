@@ -1,0 +1,33 @@
+<section id="hero" (mouseenter)="pauseSlide()" (mouseleave)="resumeSlide()">
+  <div class="hero-bg" [class.active]="activeLayer === 0" [style.background]="backgroundForLayer(0)"></div>
+  <div class="hero-bg" [class.active]="activeLayer === 1" [style.background]="backgroundForLayer(1)"></div>
+  <div class="hero-line"></div>
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-eyebrow">
+        <div class="hero-eyebrow-line"></div>
+        <span>Brazilian Jiu-Jitsu &nbsp;·&nbsp; Arte Marcial</span>
+      </div>
+      <h1 class="hero-title">CORPO.<br>MENTE.<br><span class="gold">ESPÍRITO.</span></h1>
+      <p class="hero-subtitle">"Desenvolvimento físico e mental através da arte marcial mais completa do mundo."</p>
+      <div class="hero-btns">
+        <a href="#contato" class="btn btn-gold">Comece Agora</a>
+        <a href="#sobre" class="btn btn-outline">Conheça a Academia</a>
+      </div>
+    </div>
+  </div>
+  <div class="hero-slider-indicators">
+    <button
+      *ngFor="let image of images; let i = index"
+      type="button"
+      class="indicator"
+      [class.active]="i === currentIndex"
+      [attr.aria-label]="'Slide ' + (i + 1)"
+      (click)="goToSlide(i)">
+    </button>
+  </div>
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>

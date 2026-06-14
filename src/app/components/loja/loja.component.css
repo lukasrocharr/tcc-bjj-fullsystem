@@ -1,0 +1,265 @@
+#loja {
+  padding: 4rem 0;
+  background: #f9f9f9;
+}
+
+.loja-header {
+  margin-bottom: 3rem;
+}
+
+.loja-subtitle {
+  font-size: 1.1rem;
+  color: #666;
+  margin-top: 1rem;
+}
+
+.filtros-section {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 2.5rem;
+  flex-wrap: wrap;
+}
+
+.filtro-btn {
+  padding: 0.75rem 1.5rem;
+  border: 2px solid #ddd;
+  background: white;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  color: #666;
+}
+
+.filtro-btn:hover {
+  border-color: #c9a84c;
+  color: #c9a84c;
+}
+
+.filtro-btn.ativo {
+  background: #c9a84c;
+  color: white;
+  border-color: #c9a84c;
+}
+
+.produtos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.produto-card {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.produto-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.produto-imagem {
+  position: relative;
+  width: 100%;
+  padding-top: 100%;
+  background: #f0f0f0;
+  overflow: hidden;
+}
+
+.img-placeholder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: linear-gradient(135deg, #c9a84c 0%, #0a0a0a 100%);
+}
+
+.badge-estoque {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: #22c55e;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.badge-estoque.sem-estoque {
+  background: #ef4444;
+}
+
+.produto-info {
+  padding: 1.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.produto-info h3 {
+  font-size: 1.1rem;
+  color: #0a0a0a;
+  margin: 0 0 0.5rem;
+  font-weight: 700;
+}
+
+.descricao {
+  font-size: 0.9rem;
+  color: #666;
+  margin: 0 0 1rem;
+  flex: 1;
+}
+
+.opcoes {
+  margin: 1rem 0;
+}
+
+.opcao-group {
+  margin-bottom: 1rem;
+}
+
+.opcao-group label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.opcao-buttons {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.opcao-btn {
+  padding: 0.4rem 0.8rem;
+  border: 1px solid #ddd;
+  background: white;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.opcao-btn:hover {
+  border-color: #c9a84c;
+  background: #f9f9f9;
+}
+
+.opcao-btn.selecionado {
+  background: #c9a84c;
+  color: white;
+  border-color: #c9a84c;
+}
+
+.produto-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid #eee;
+}
+
+.preco {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #c9a84c;
+}
+
+.btn-adicionar {
+  background: #c9a84c;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-adicionar:hover:not(:disabled) {
+  background: #b39539;
+  transform: scale(1.05);
+}
+
+.btn-adicionar:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.loading,
+.erro-message {
+  text-align: center;
+  padding: 3rem;
+  font-size: 1.1rem;
+  color: #666;
+}
+
+.erro-message button {
+  margin-top: 1rem;
+  padding: 0.75rem 1.5rem;
+  background: #ef4444;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.erro-message button:hover {
+  background: #dc2626;
+}
+
+.aviso-message {
+  text-align: center;
+  margin-top: 1.5rem;
+  padding: 0.85rem 1.25rem;
+  background: #dcfce7;
+  border: 1px solid #bbf7d0;
+  color: #166534;
+  border-radius: 8px;
+  font-weight: 600;
+  display: inline-block;
+}
+
+.img-placeholder.sem-img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  font-size: 3rem;
+  background: #f0f0f0;
+  color: #ccc;
+}
+
+@media (max-width: 768px) {
+  .produtos-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .filtros-section {
+    gap: 0.5rem;
+  }
+
+  .filtro-btn {
+    font-size: 0.9rem;
+    padding: 0.6rem 1rem;
+  }
+}

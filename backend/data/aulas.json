@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "titulo": "Iniciante - Turma A",
+    "modalidade": "Kids",
+    "professor": "João Silva",
+    "dataHora": "2026-04-18T09:00:00",
+    "duracao": 60,
+    "alunos": 12,
+    "status": "ativa"
+  },
+  {
+    "id": 2,
+    "titulo": "Intermediário - Turma B",
+    "modalidade": "Adultos",
+    "professor": "Maria Santos",
+    "dataHora": "2026-04-18T14:00:00",
+    "duracao": 90,
+    "alunos": 18,
+    "status": "ativa"
+  },
+  {
+    "id": 3,
+    "titulo": "Competição",
+    "modalidade": "Avançado",
+    "professor": "Carlos Oliveira",
+    "dataHora": "2026-04-19T18:00:00",
+    "duracao": 120,
+    "alunos": 15,
+    "status": "ativa"
+  }
+]

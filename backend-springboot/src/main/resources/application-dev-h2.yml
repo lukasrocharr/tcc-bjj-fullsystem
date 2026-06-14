@@ -1,0 +1,17 @@
+# Perfil opcional para rodar sem Postgres (ex.: mvn spring-boot:run -Dspring-boot.run.profiles=dev-h2)
+# Usa H2 em memoria com modo de compatibilidade PostgreSQL. As migrations Flyway
+# sao compativeis pois evitam dialetos especificos de Postgres.
+spring:
+  config:
+    activate:
+      on-profile: dev-h2
+  datasource:
+    url: jdbc:h2:mem:bjj;MODE=PostgreSQL;DB_CLOSE_DELAY=-1;DATABASE_TO_LOWER=TRUE
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+  h2:
+    console:
+      enabled: true
+  flyway:
+    enabled: true

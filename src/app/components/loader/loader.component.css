@@ -1,0 +1,48 @@
+/* LOADER */
+#loader {
+  position: fixed; 
+  inset: 0; 
+  z-index: 9999; 
+  background: var(--black);
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
+  flex-direction: column; 
+  gap: 1.5rem;
+  transition: opacity .6s ease, visibility .6s ease;
+}
+
+#loader.hide { 
+  opacity: 0; 
+  visibility: hidden; 
+}
+
+.loader-logo { 
+  display:flex; align-items:center; justify-content:center;
+}
+
+.loader-logo-img {
+  height: 56px;
+  object-fit: contain;
+}
+
+.loader-bar  { 
+  width: 160px; 
+  height: 2px; 
+  background: var(--border); 
+  border-radius: 1px; 
+  overflow: hidden; 
+}
+
+.loader-fill { 
+  height: 100%; 
+  background: var(--gold); 
+  width: 0%; 
+  animation: load 1.4s ease forwards; 
+}
+
+@keyframes load { 
+  to { 
+    width: 100%; 
+  } 
+}

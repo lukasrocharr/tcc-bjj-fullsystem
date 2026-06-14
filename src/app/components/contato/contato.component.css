@@ -1,0 +1,147 @@
+/* CONTATO */
+#contato { 
+  padding: 7rem 0; 
+  position: relative; 
+  overflow: hidden; 
+}
+
+.cta-wrap { 
+  background: var(--card); 
+  border: 1px solid var(--border); 
+  border-radius: 2px; 
+  padding: 5rem 4rem; 
+  display: grid; 
+  grid-template-columns: 1fr 1fr; 
+  gap: 4rem; 
+  align-items: center; 
+  position: relative; 
+  overflow: hidden; 
+}
+
+.cta-wrap::before { 
+  content: ''; 
+  position: absolute; 
+  top: 0; 
+  left: 0; 
+  right: 0; 
+  height: 2px; 
+  background: linear-gradient(to right, transparent, var(--gold), transparent); 
+}
+
+.cta-bg-text { 
+  position: absolute; 
+  right: -1%; 
+  bottom: -5%; 
+  font-family: var(--ff-head); 
+  font-size: clamp(6rem, 14vw, 16rem); 
+  color: rgba(201,168,76,.04); 
+  line-height: 1; 
+  pointer-events: none; 
+  letter-spacing: .08em; 
+}
+
+.cta-left .section-title { 
+  margin: .8rem 0 1rem; 
+}
+
+.cta-sub { 
+  font-size: .88rem; 
+  color: var(--muted); 
+  line-height: 1.7; 
+  margin-bottom: 2rem; 
+}
+
+.cta-btns { 
+  display: flex; 
+  gap: 1rem; 
+  flex-wrap: wrap; 
+}
+
+.cta-right { 
+  position: relative; 
+  z-index: 1; 
+}
+
+.form-group { 
+  display: flex; 
+  flex-direction: column; 
+  gap: .4rem; 
+  margin-bottom: 1.2rem; 
+}
+
+.form-group label { 
+  font-size: .65rem; 
+  letter-spacing: .14em; 
+  text-transform: uppercase; 
+  color: var(--muted); 
+}
+
+.form-group input, 
+.form-group select, 
+.form-group textarea { 
+  background: rgba(255,255,255,.04); 
+  border: 1px solid var(--border); 
+  border-radius: 2px; 
+  padding: 12px 14px; 
+  color: var(--white); 
+  font-family: var(--ff-body); 
+  font-size: .85rem; 
+  outline: none; 
+  transition: border-color .2s; 
+  width: 100%; 
+}
+
+.form-group input:focus, 
+.form-group select:focus, 
+.form-group textarea:focus { 
+  border-color: var(--gold); 
+}
+
+.form-group select option { 
+  background: var(--dark); 
+}
+
+.form-group textarea { 
+  resize: none; 
+  height: 90px; 
+}
+
+.form-row { 
+  display: grid; 
+  grid-template-columns: 1fr 1fr; 
+  gap: 1rem; 
+}
+
+@media (max-width: 1024px) {
+  .cta-wrap { 
+    grid-template-columns: 1fr; 
+    gap: 2.5rem; 
+    padding: 3rem 2rem; 
+  }
+}
+
+@media (max-width: 768px) {
+  .form-row { 
+    grid-template-columns: 1fr; 
+  }
+
+  .cta-btns { 
+    flex-direction: column; 
+  }
+
+  .cta-btns .btn { 
+    text-align: center; 
+    justify-content: center; 
+  }
+}
+
+@media (max-width: 480px) {
+  .cta-btns { 
+    flex-direction: column; 
+  }
+
+  .cta-btns .btn { 
+    text-align: center; 
+    justify-content: center; 
+  }
+}

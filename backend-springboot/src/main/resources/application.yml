@@ -1,0 +1,51 @@
+spring:
+  application:
+    name: bjj-academy
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/bjj_academy}
+    username: ${DB_USERNAME:bjj}
+    password: ${DB_PASSWORD:bjj}
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: false
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+  mail:
+    host: ${MAIL_HOST:localhost}
+    port: ${MAIL_PORT:1025}
+    username: ${MAIL_USERNAME:}
+    password: ${MAIL_PASSWORD:}
+
+server:
+  port: ${SERVER_PORT:8080}
+
+# Configuracoes da aplicacao (JWT, seguranca, CORS, notificacao)
+app:
+  jwt:
+    # Em producao, sobrescreva via variavel de ambiente. Base64 de >= 256 bits.
+    secret: ${JWT_SECRET:Y2hhbmdlLW1lLXN1cGVyLXNlY3JldC1iamotYWNhZGVteS0yMDI2LXRjYy1rZXk=}
+    access-token-expiration-minutes: ${JWT_ACCESS_MIN:30}
+    refresh-token-expiration-days: ${JWT_REFRESH_DAYS:7}
+    issuer: bjj-academy
+  security:
+    max-login-attempts: ${MAX_LOGIN_ATTEMPTS:5}
+    lockout-minutes: ${LOCKOUT_MINUTES:15}
+    password-reset-token-expiration-minutes: ${PWD_RESET_MIN:30}
+  cors:
+    allowed-origins: ${CORS_ORIGINS:http://localhost:4200}
+  notification:
+    from: ${NOTIFICATION_FROM:no-reply@bjj-academy.local}
+    provider: ${NOTIFICATION_PROVIDER:console}
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+
+logging:
+  level:
+    org.flywaydb: INFO

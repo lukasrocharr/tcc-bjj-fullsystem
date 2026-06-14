@@ -1,0 +1,121 @@
+/* PROFESSOR */
+#prof { 
+  padding: 7rem 0; 
+  background: var(--dark); 
+  position: relative; 
+  overflow: hidden; 
+}
+
+#prof::before { 
+  content: ''; 
+  position: absolute; 
+  inset: 0; 
+  background: 
+    radial-gradient(circle at 20% 50%, rgba(139,26,26,.12) 0%, transparent 60%), 
+    radial-gradient(circle at 80% 50%, rgba(201,168,76,.07) 0%, transparent 55%); 
+}
+
+.prof-inner { 
+  position: relative; 
+  z-index: 1; 
+  display: grid; 
+  grid-template-columns: 1fr 1fr; 
+  gap: 5rem; 
+  align-items: center; 
+}
+
+.prof-text .section-title { 
+  margin: .8rem 0 1.2rem; 
+}
+
+.prof-desc { 
+  font-size: .92rem; 
+  line-height: 1.85; 
+  color: rgba(240,237,230,.65); 
+  margin-bottom: 2rem; 
+}
+
+.prof-list { 
+  display: flex; 
+  flex-direction: column; 
+  gap: .8rem; 
+  margin-bottom: 2.5rem; 
+}
+
+.prof-list li { 
+  display: flex; 
+  align-items: center; 
+  gap: .8rem; 
+  font-size: .82rem; 
+  color: rgba(240,237,230,.8); 
+}
+
+.prof-list li::before { 
+  content: ''; 
+  display: block; 
+  width: 20px; 
+  height: 1px; 
+  background: var(--gold); 
+  flex-shrink: 0; 
+}
+
+.prof-visual { 
+  position: relative; 
+}
+
+.prof-belt { 
+  position: absolute; 
+  top: 2rem; 
+  left: -2rem; 
+  background: var(--black); 
+  border: 1px solid var(--border); 
+  padding: 1rem 1.4rem; 
+  display: flex; 
+  flex-direction: column; 
+  gap: .3rem; 
+  z-index: 2; 
+}
+
+.belt-stripe { 
+  height: 12px; 
+  border-radius: 1px; 
+}
+
+.belt-stripe.b1 { 
+  background: #111; 
+  width: 100px; 
+}
+
+.belt-stripe.b2 { 
+  background: var(--red); 
+  width: 100px; 
+}
+
+.belt-stripe.b3 { 
+  background: #111; 
+  width: 100px; 
+}
+
+.belt-stripe.b4 { 
+  background: var(--gold); 
+  width: 40px; 
+}
+
+.belt-label { 
+  font-size: .6rem; 
+  letter-spacing: .14em; 
+  text-transform: uppercase; 
+  color: var(--muted); 
+  margin-top: .5rem; 
+}
+
+@media (max-width: 1024px) {
+  .prof-inner { 
+    grid-template-columns: 1fr; 
+    gap: 3rem; 
+  }
+
+  .prof-visual { 
+    max-width: 420px; 
+  }
+}

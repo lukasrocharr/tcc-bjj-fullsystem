@@ -1,0 +1,91 @@
+<section id="loja">
+  <div class="container">
+    <div class="loja-header reveal" style="text-align:center;">
+      <span class="tag">🛍️ Loja</span>
+      <h2 class="section-title">Kimonos e <span class="gold">Acessórios</span></h2>
+      <p class="loja-subtitle">Equipamentos de qualidade para seu treino</p>
+    </div>
+
+    <!-- Filtros (categorias dinamicas do backend) -->
+    <div class="filtros-section reveal">
+      <button
+        class="filtro-btn"
+        [class.ativo]="!categoriaId"
+        (click)="filtrar(undefined)">
+        Todos ({{ produtos.length }})
+      </button>
+      <button
+        *ngFor="let c of categorias"
+        class="filtro-btn"
+        [class.ativo]="categoriaId === c.id"
+        (click)="filtrar(c.id)">
+        {{ c.nome }}
+      </button>
+    </div>
+
+    <!-- Grid de Produtos -->
+    <div class="produtos-grid reveal">
+      <div class="produto-card" *ngFor="let produto of produtos">
+        <div class="produto-imagem">
+          <img [src]="productImage(produto)" [alt]="produto.nome" class="img-placeholder">
+          <div class="badge-estoque" [class.sem-estoque]="estoqueTotal(produto) === 0">
+            {{ getEstoqueText(estoqueTotal(produto)) }}
+          </div>
+        </div>
+
+        <div class="produto-info">
+          <h3>{{ produto.nome }}</h3>
+          <p class="descricao">{{ produto.descricao }}</p>
+
+          <!-- Variacoes (tamanho/cor) -->
+          <div class="opcoes" *ngIf="produto.variacoes?.length">
+            <div class="opcao-group">
+              <label>Variação:</label>
+              <div class="opcao-buttons">
+                <button
+                  *ngFor="let v of produto.variacoes"
+                  class="opcao-btn"
+                  [class.selecionado]="selecionada[produto.id] === v.id"
+                  [disabled]="v.estoque === 0"
+                  (click)="selecionarVariacao(produto.id, v.id)">
+                  {{ rotuloVariacao(v) }}
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="produto-footer">
+            <span class="preco">R$ {{ menorPreco(produto) | number: '1.2-2' }}</span>
+            <button
+              class="btn-adicionar"
+              [disabled]="estoqueTotal(produto) === 0 || !selecionada[produto.id] || adicionando"
+              (click)="adicionarAoCarrinho(produto)">
+              {{ estoqueTotal(produto) > 0 ? 'Adicionar' : 'Indisponível' }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mensagem de sucesso -->
+    <div *ngIf="aviso" class="aviso-message">
+      <p>{{ aviso }}</p>
+    </div>
+
+    <!-- Mensagem Carregando -->
+    <div *ngIf="carregando" class="loading">
+      <p>Carregando produtos...</p>
+    </div>
+
+    <!-- Sem produtos -->
+    <div *ngIf="!carregando && produtos.length === 0 && !erro" class="loading">
+      <p>Nenhum produto disponível no momento.</p>
+    </div>
+
+    <!-- Mensagem Erro -->
+    <div *ngIf="erro" class="erro-message">
+      <p>{{ erro }}</p>
+      <button (click)="carregarProdutos()">Tentar Novamente</button>
+    </div>
+  </div>
+</section>

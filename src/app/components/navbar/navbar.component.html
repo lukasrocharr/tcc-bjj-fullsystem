@@ -1,0 +1,38 @@
+<header id="navbar" [class.scrolled]="isScrolled">
+  <div class="container nav-inner">
+    <a href="#" class="nav-logo">
+      <img src="/assets/brand/logo.png" alt="mikalkenas" class="nav-logo-img">
+      <span class="sr-only">mikalkenas</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#modalidades">Modalidades</a></li>
+      <li><a href="#loja">Loja</a></li>
+      <li><a href="#prof">Professores</a></li>
+      <li><a href="#contato">Contato</a></li>
+    </ul>
+    <div class="nav-right">
+      <button class="carrinho-icon" (click)="abrirCarrinho()">
+        <span class="carrinho-icone">🛒</span>
+        <span *ngIf="carrinhoQuantidade > 0" class="carrinho-badge">{{ carrinhoQuantidade }}</span>
+      </button>
+      <a href="#contato" class="btn btn-gold nav-cta">Matricule-se</a>
+    </div>
+    <div class="hamburger" 
+         [class.open]="isMenuOpen"
+         (click)="toggleMobileMenu()" 
+         id="hamburger">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</header>
+
+<nav class="mobile-menu" 
+     [class.open]="isMenuOpen"
+     id="mobileMenu">
+  <a href="#sobre" (click)="closeMobileMenu()">Sobre</a>
+  <a href="#modalidades" (click)="closeMobileMenu()">Modalidades</a>
+  <a href="#loja" (click)="closeMobileMenu()">Loja</a>
+  <a href="#prof" (click)="closeMobileMenu()">Professores</a>
+  <a href="#contato" (click)="closeMobileMenu()">Contato</a>
+</nav>

@@ -1,0 +1,180 @@
+/* SOBRE */
+#sobre { 
+  padding: 7rem 0; 
+  position: relative; 
+  overflow: hidden; 
+}
+
+#sobre::before {
+  content: 'BJJ'; 
+  position: absolute; 
+  right: -2%; 
+  top: 50%; 
+  transform: translateY(-50%);
+  font-family: var(--ff-head); 
+  font-size: clamp(8rem, 16vw, 18rem);
+  color: rgba(201,168,76,.04); 
+  line-height: 1; 
+  pointer-events: none; 
+  letter-spacing: .1em;
+}
+
+.sobre-grid { 
+  display: grid; 
+  grid-template-columns: 1fr 1fr; 
+  gap: 5rem; 
+  align-items: center; 
+}
+
+.sobre-img-wrap { 
+  position: relative;
+  min-height: 520px;
+}
+
+.sobre-slider {
+  position: relative;
+  height: 520px;
+  overflow: hidden;
+}
+
+.sobre-slide {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0;
+  transition: opacity .8s ease;
+}
+
+.sobre-slide.active {
+  opacity: 1;
+}
+
+.sobre-slider-indicators {
+  position: absolute;
+  left: 50%;
+  bottom: 1.4rem;
+  transform: translateX(-50%);
+  display: flex;
+  gap: .5rem;
+  z-index: 2;
+}
+
+.sobre-slider-indicators .indicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.35);
+  border: 1px solid rgba(255,255,255,.45);
+  cursor: pointer;
+  transition: transform .25s ease, background .25s ease;
+}
+
+.sobre-slider-indicators .indicator.active {
+  background: var(--gold);
+  transform: scale(1.1);
+  border-color: var(--gold);
+}
+
+.sobre-img-badge {
+  position: absolute; 
+  bottom: -1.5rem; 
+  right: -1.5rem;
+  background: var(--gold); 
+  color: var(--black); 
+  padding: 1.5rem;
+  font-family: var(--ff-head); 
+  text-align: center; 
+  line-height: 1.1; 
+  z-index: 2;
+}
+
+.sobre-img-badge .badge-num { 
+  font-size: 2.8rem; 
+  display: block; 
+}
+
+.sobre-img-badge .badge-text { 
+  font-size: .75rem; 
+  letter-spacing: .1em; 
+  display: block; 
+}
+
+.sobre-img-frame { 
+  position: absolute; 
+  top: -1.2rem; 
+  left: -1.2rem; 
+  right: 1.2rem; 
+  bottom: 1.2rem; 
+  border: 1px solid rgba(201,168,76,.25); 
+  border-radius: 2px; 
+  pointer-events: none; 
+  z-index: 0; 
+}
+
+.sobre-desc { 
+  font-size: .95rem; 
+  line-height: 1.85; 
+  color: rgba(240,237,230,.7); 
+  margin: 1.5rem 0 2.5rem; 
+  max-width: 500px; 
+}
+
+.sobre-values { 
+  display: grid; 
+  grid-template-columns: 1fr 1fr; 
+  gap: 1rem; 
+  margin-bottom: 2.5rem; 
+}
+
+.value-card { 
+  background: var(--card); 
+  border: 1px solid var(--border); 
+  padding: 1.2rem 1.4rem; 
+  border-radius: 2px; 
+  transition: border-color .25s, transform .25s; 
+}
+
+.value-card:hover { 
+  border-color: var(--gold); 
+  transform: translateY(-3px); 
+}
+
+.value-icon { 
+  font-size: 1.4rem; 
+  margin-bottom: .5rem; 
+}
+
+.value-name { 
+  font-family: var(--ff-head); 
+  font-size: 1.1rem; 
+  letter-spacing: .08em; 
+  color: var(--gold); 
+}
+
+.value-desc { 
+  font-size: .72rem; 
+  color: var(--muted); 
+  margin-top: .2rem; 
+  letter-spacing: .05em; 
+}
+
+@media (max-width: 1024px) {
+  .sobre-grid { 
+    grid-template-columns: 1fr; 
+    gap: 3rem; 
+  }
+}
+
+@media (max-width: 768px) {
+  .sobre-values { 
+    grid-template-columns: 1fr 1fr; 
+  }
+}
+
+@media (max-width: 480px) {
+  .sobre-values { 
+    grid-template-columns: 1fr; 
+  }
+}

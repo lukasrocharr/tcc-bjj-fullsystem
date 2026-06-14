@@ -1,0 +1,80 @@
+[
+  {
+    "id": 1,
+    "nome": "Kimono Iniciante",
+    "descricao": "Kimono de qualidade para iniciantes - 100% algodão",
+    "preco": 250,
+    "categoria": "kimono",
+    "estoque": 15,
+    "imagem": "/assets/images/kimono-1.jpg",
+    "tamanhos": [
+      "P",
+      "M",
+      "G",
+      "GG"
+    ]
+  },
+  {
+    "id": 2,
+    "nome": "Kimono Profissional",
+    "descricao": "Kimono premium para competições - Pré-encolhido",
+    "preco": 450,
+    "categoria": "kimono",
+    "estoque": 8,
+    "imagem": "/assets/images/kimono-2.jpg",
+    "tamanhos": [
+      "P",
+      "M",
+      "G",
+      "GG"
+    ]
+  },
+  {
+    "id": 3,
+    "nome": "Faixa Colorida Oficial",
+    "descricao": "Faixa oficial para graduações",
+    "preco": 80,
+    "categoria": "acessorio",
+    "estoque": 30,
+    "imagem": "/assets/images/faixa.jpg",
+    "cores": [
+      "Branca",
+      "Azul",
+      "Roxa",
+      "Marrom",
+      "Preta"
+    ]
+  },
+  {
+    "id": 4,
+    "nome": "Protetor Bucal",
+    "descricao": "Protetor bucal profissional ajustável",
+    "preco": 45,
+    "categoria": "acessorio",
+    "estoque": 25,
+    "imagem": "/assets/images/protetor.jpg"
+  },
+  {
+    "id": 5,
+    "nome": "Caneleira - Par",
+    "descricao": "Caneleira com proteção para shinai",
+    "preco": 120,
+    "categoria": "acessorio",
+    "estoque": 12,
+    "imagem": "/assets/images/caneleira.jpg",
+    "tamanhos": [
+      "P",
+      "M",
+      "G"
+    ]
+  },
+  {
+    "id": 6,
+    "nome": "Luva de Treino",
+    "descricao": "Luva de treino resistente - Par",
+    "preco": 180,
+    "categoria": "acessorio",
+    "estoque": 20,
+    "imagem": "/assets/images/luva.jpg"
+  }
+]
