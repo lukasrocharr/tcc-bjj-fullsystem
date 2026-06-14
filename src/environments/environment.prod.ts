@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://api.sualogo.com.br/api/v1'
+  apiUrl: 'https://tcc-bjj-fullsystem.onrender.com/api'
 };
