@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://SUBSTITUIR-PELA-URL-DO-RAILWAY.railway.app/api/v1'
+  apiUrl: 'https://tcc-bjj-fullsystem-production.up.railway.app/api/v1'
 };
