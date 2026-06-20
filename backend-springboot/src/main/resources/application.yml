@@ -22,7 +22,7 @@ spring:
     password: ${MAIL_PASSWORD:}
 
 server:
-  port: ${SERVER_PORT:8080}
+  port: ${PORT:8080}
 
 # Configuracoes da aplicacao (JWT, seguranca, CORS, notificacao)
 app:
