@@ -8,7 +8,7 @@ import { GestaoService, Dashboard } from '../../services/gestao.service';
   standalone: true,
   imports: [CommonModule, RouterModule],
   template: `
-    <div class="dashboard-container">
+    <div class="admin-dashboard-container">
       <div class="dashboard-header">
         <h1>Dashboard Administrativo</h1>
         <p>Visão geral da academia e da loja</p>
@@ -135,7 +135,8 @@ import { GestaoService, Dashboard } from '../../services/gestao.service';
     .quick { background: white; border: 1px solid #eee; border-radius: 10px; padding: 1rem 1.5rem; text-decoration: none; color: #0a0a0a; font-weight: 600; box-shadow: 0 2px 8px rgba(0,0,0,.05); transition: all .3s ease; }
     .quick:hover { border-color: #c9a84c; color: #b39539; transform: translateY(-2px); }
 
-    @media (max-width: 768px) { .stats-grid { grid-template-columns: 1fr; } .bar-value { display: none; } }
+    @media (max-width: 768px) { .stats-grid { grid-template-columns: 1fr; } .bar-value { display: none; } .chart-section { overflow-x: auto; } .bar-chart { min-width: 500px; } }
+    @media (max-width: 576px) { .stats-grid { grid-template-columns: 1fr; } .chart-section { padding: 0.5rem; } .bar-chart { min-width: 300px; } .stat-card { flex-direction: column; align-items: flex-start; } .card-icon { font-size: 1.5rem; } .stat-value { font-size: 1.4rem; } }
   `]
 })
 export class AdminDashboardComponent implements OnInit {

@@ -43,7 +43,7 @@ import { NotificacaoService } from '../../services/notificacao.service';
   `,
   styles: [`
     .portal { display: flex; min-height: 100vh; background: #f5f5f5; }
-    .sidebar { width: 250px; background: linear-gradient(180deg,#0a0a0a,#1a1a1a); color: #fff; display: flex; flex-direction: column; position: fixed; height: 100vh; left: 0; top: 0; z-index: 1000; }
+    .sidebar { width: 250px; background: linear-gradient(180deg,#0a0a0a,#1a1a1a); color: #fff; display: flex; flex-direction: column; position: fixed; height: 100vh; left: 0; top: 0; z-index: 1000; transition: transform .3s ease; }
     .sidebar-header { padding: 1.5rem 1rem; border-bottom: 1px solid rgba(255,255,255,.1); display: flex; justify-content: space-between; align-items: center; }
     .logo { color: #c9a84c; font-size: 1.15rem; }
     .close { display: none; background: none; border: none; color: #fff; font-size: 1.3rem; cursor: pointer; }
@@ -60,10 +60,11 @@ import { NotificacaoService } from '../../services/notificacao.service';
     .logout:hover { background: #c9a84c; color: #0a0a0a; }
     .main { flex: 1; margin-left: 250px; display: flex; flex-direction: column; }
     .topbar { background: #fff; padding: 1rem 2rem; border-bottom: 1px solid #e0e0e0; display: flex; align-items: center; gap: 1rem; }
-    .topbar h2 { margin: 0; font-size: 1.4rem; color: #0a0a0a; flex: 1; }
+    .topbar h2 { margin: 0; font-size: 1.4rem; color: #0a0a0a; flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    @media (max-width: 768px) { .topbar h2 { font-size: 1.1rem; white-space: normal; overflow: visible; text-overflow: clip; } }
     .topbar .site { color: #c9a84c; text-decoration: none; font-weight: 600; font-size: .9rem; }
     .menu { display: none; background: none; border: none; font-size: 1.4rem; cursor: pointer; }
-    .content { flex: 1; padding: 2rem; }
+    .content { flex: 1; padding: 1rem; }
     @media (max-width: 768px) {
       .sidebar { transform: translateX(-100%); transition: transform .3s ease; width: 280px; }
       .sidebar.open { transform: translateX(0); }

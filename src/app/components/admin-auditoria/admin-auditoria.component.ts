@@ -8,7 +8,7 @@ import { ADMIN_CRUD_STYLES } from '../admin-shared.styles';
   standalone: true,
   imports: [CommonModule],
   template: `
-    <div class="page">
+    <div class="page admin-auditoria-container">
       <div class="page-header">
         <div>
           <h1>Auditoria</h1>

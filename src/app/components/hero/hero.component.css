@@ -45,6 +45,9 @@
 }
 
 .hero-content {
+  max-width: 90%;
+  text-align: center;
+
   position: relative;
   z-index: 2;
   max-width: 760px;

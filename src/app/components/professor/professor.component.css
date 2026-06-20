@@ -110,6 +110,11 @@
 }
 
 @media (max-width: 1024px) {
+  .professor-container .prof-inner {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
   .prof-inner { 
     grid-template-columns: 1fr; 
     gap: 3rem; 

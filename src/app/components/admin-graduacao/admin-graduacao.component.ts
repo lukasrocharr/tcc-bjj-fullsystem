@@ -11,7 +11,7 @@ import { ADMIN_CRUD_STYLES } from '../admin-shared.styles';
   standalone: true,
   imports: [CommonModule, FormsModule],
   template: `
-    <div class="page">
+    <div class="page admin-graduacao-container">
       <div class="page-header">
         <div>
           <h1>Graduações</h1>
@@ -110,7 +110,17 @@ import { ADMIN_CRUD_STYLES } from '../admin-shared.styles';
       </div>
     </div>
   `,
-  styles: [ADMIN_CRUD_STYLES + `
+  styles: [ADMIN_CRUD_STYLES, `
+    .admin-graduacao-container .tabela-section { overflow-x:auto; }
+    .admin-graduacao-container table { min-width:600px; }
+    @media (max-width: 768px) { .admin-graduacao-container .tabela-section { padding:0.5rem; } }
+    @media (max-width: 576px) {
+      .admin-graduacao-container .form-row { flex-direction:column; gap:0.75rem; }
+      .admin-graduacao-container .form-group { width:100%; }
+      .admin-graduacao-container .form-actions { justify-content:stretch; }
+      .admin-graduacao-container .btn-salvar { width:100%; }
+    }
+    ` + `
     .duas-colunas { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
     @media (max-width: 900px) { .duas-colunas { grid-template-columns: 1fr; } }
   `]

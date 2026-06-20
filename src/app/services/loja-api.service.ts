@@ -19,7 +19,7 @@ export interface Variacao {
   estoque: number;
 }
 
-export interface Produto {
+export interface Produto {  imagem?: string;
   id: number;
   nome: string;
   descricao?: string;

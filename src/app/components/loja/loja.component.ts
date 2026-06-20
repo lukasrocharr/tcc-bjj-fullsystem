@@ -84,6 +84,6 @@ export class LojaComponent implements OnInit {
   }
 
   productImage(produto: Produto): string {
-    return `assets/loja/${produto.id}.webp`;
+    return produto.imagem ? produto.imagem : 'assets/loja/default-product.webp';
   }
 }

@@ -6,7 +6,7 @@
     "preco": 250,
     "categoria": "kimono",
     "estoque": 15,
-    "imagem": "/assets/images/kimono-1.jpg",
+    "imagem": "assets/loja/kimono-azul.webp",
     "tamanhos": [
       "P",
       "M",
@@ -16,12 +16,12 @@
   },
   {
     "id": 2,
-    "nome": "Kimono Profissional",
+    "nome": "Kimono Branco",
     "descricao": "Kimono premium para competições - Pré-encolhido",
     "preco": 450,
     "categoria": "kimono",
     "estoque": 8,
-    "imagem": "/assets/images/kimono-2.jpg",
+    "imagem": "assets/loja/kimono-branco.webp",
     "tamanhos": [
       "P",
       "M",

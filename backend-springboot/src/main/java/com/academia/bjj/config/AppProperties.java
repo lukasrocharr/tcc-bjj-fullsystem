@@ -142,7 +142,7 @@ public class AppProperties {
     }
 
     public static class Cors {
-        private String allowedOrigins = "http://localhost:4200";
+        private String allowedOrigins = "http://localhost:4200,http://localhost:4201,http://localhost:4202,http://localhost:4203";
 
         public String getAllowedOrigins() {
             return allowedOrigins;

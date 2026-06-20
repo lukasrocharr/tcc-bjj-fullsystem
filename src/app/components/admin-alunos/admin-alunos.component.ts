@@ -9,7 +9,7 @@ import { ADMIN_CRUD_STYLES } from '../admin-shared.styles';
   standalone: true,
   imports: [CommonModule, FormsModule],
   template: `
-    <div class="page">
+    <div class="page admin-alunos-container">
       <div class="page-header">
         <div>
           <h1>Gestão de Alunos</h1>
@@ -115,7 +115,19 @@ import { ADMIN_CRUD_STYLES } from '../admin-shared.styles';
       </div>
     </div>
   `,
-  styles: [ADMIN_CRUD_STYLES]
+  styles: [ADMIN_CRUD_STYLES, `
+    .admin-alunos-container .tabela-section { overflow-x:auto; }
+    .admin-alunos-container table { min-width:600px; }
+    @media (max-width: 768px) {
+      .admin-alunos-container .tabela-section { padding:0.5rem; }
+    }
+    @media (max-width: 576px) {
+      .admin-alunos-container .form-row { flex-direction: column; gap:0.75rem; }
+      .admin-alunos-container .form-group { width:100%; }
+      .admin-alunos-container .form-actions { justify-content: stretch; }
+      .admin-alunos-container .btn-salvar, .admin-alunos-container .btn-cancelar { width:100%; }
+    }
+    `]
 })
 export class AdminAlunosComponent implements OnInit {
   alunos: Aluno[] = [];

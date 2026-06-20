@@ -8,7 +8,7 @@ import { ADMIN_CRUD_STYLES } from '../admin-shared.styles';
   standalone: true,
   imports: [CommonModule],
   template: `
-    <div class="page">
+    <div class="page portal-financeiro-container">
       <div class="page-header"><div><h1>Financeiro</h1><p>Suas mensalidades e recibos</p></div></div>
 
       <div class="alert error" *ngIf="erro">⚠️ {{ erro }}</div>
@@ -35,7 +35,18 @@ import { ADMIN_CRUD_STYLES } from '../admin-shared.styles';
       </div>
     </div>
   `,
-  styles: [ADMIN_CRUD_STYLES]
+  styles: [ADMIN_CRUD_STYLES, `
+    .portal-financeiro-container .tabela-section { overflow-x:auto; }
+    .portal-financeiro-container .icon-btn { font-size:1.2rem; padding:0.6rem; }
+    .portal-financeiro-container table { min-width:600px; }
+    @media (max-width:768px) {
+      .portal-financeiro-container .icon-btn { font-size:1.4rem; padding:0.8rem; }
+    }
+    @media (max-width:576px) {
+      .portal-financeiro-container .tabela-section { padding:0.5rem; }
+      .portal-financeiro-container .icon-btn { width:100%; text-align:center; }
+    }
+    `]
 })
 export class PortalFinanceiroComponent implements OnInit {
   mensalidades: Mensalidade[] = [];

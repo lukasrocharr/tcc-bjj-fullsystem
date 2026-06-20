@@ -8,7 +8,7 @@ import { AdminService, Aula } from '../../services/admin.service';
   standalone: true,
   imports: [CommonModule, FormsModule],
   template: `
-    <div class="aulas-container">
+    <div class="aulas-container admin-aulas-container">
       <div class="aulas-header">
         <div>
           <h1>Gestão de Aulas</h1>
@@ -26,10 +26,10 @@ import { AdminService, Aula } from '../../services/admin.service';
           <div class="form-row">
             <div class="form-group">
               <label>Título da Aula</label>
-              <input 
-                type="text" 
-                [(ngModel)]="novaAula.titulo" 
-                name="titulo" 
+              <input
+                type="text"
+                [(ngModel)]="novaAula.titulo"
+                name="titulo"
                 required
                 placeholder="Ex: BJJ Iniciante">
             </div>
@@ -48,19 +48,19 @@ import { AdminService, Aula } from '../../services/admin.service';
           <div class="form-row">
             <div class="form-group">
               <label>Professor</label>
-              <input 
-                type="text" 
-                [(ngModel)]="novaAula.professor" 
-                name="professor" 
+              <input
+                type="text"
+                [(ngModel)]="novaAula.professor"
+                name="professor"
                 required
                 placeholder="Nome do professor">
             </div>
             <div class="form-group">
               <label>Data e Hora</label>
-              <input 
-                type="datetime-local" 
-                [(ngModel)]="novaAula.dataHora" 
-                name="dataHora" 
+              <input
+                type="datetime-local"
+                [(ngModel)]="novaAula.dataHora"
+                name="dataHora"
                 required>
             </div>
           </div>
@@ -68,19 +68,19 @@ import { AdminService, Aula } from '../../services/admin.service';
           <div class="form-row">
             <div class="form-group">
               <label>Duração (minutos)</label>
-              <input 
-                type="number" 
-                [(ngModel)]="novaAula.duracao" 
-                name="duracao" 
+              <input
+                type="number"
+                [(ngModel)]="novaAula.duracao"
+                name="duracao"
                 required
                 min="15" max="180">
             </div>
             <div class="form-group">
               <label>Alunos</label>
-              <input 
-                type="number" 
-                [(ngModel)]="novaAula.alunos" 
-                name="alunos" 
+              <input
+                type="number"
+                [(ngModel)]="novaAula.alunos"
+                name="alunos"
                 required
                 min="1" max="50">
             </div>
@@ -428,6 +428,10 @@ import { AdminService, Aula } from '../../services/admin.service';
       background: #dc2626;
     }
 
+    /* Responsive adjustments */
+    .admin-aulas-container .tabela-section { overflow-x: auto; }
+    .admin-aulas-container .aulas-table { min-width: 600px; }
+
     @media (max-width: 768px) {
       .form-row {
         grid-template-columns: 1fr;
@@ -441,6 +445,14 @@ import { AdminService, Aula } from '../../services/admin.service';
       .aulas-table td {
         padding: 0.75rem 0.5rem;
       }
+    }
+
+    @media (max-width: 576px) {
+      .form-row { grid-template-columns: 1fr; gap: 0.75rem; }
+      .form-group { width: 100%; }
+      .form-actions { justify-content: stretch; }
+      .btn-salvar, .btn-cancelar { width: 100%; }
+      .admin-aulas-container .aulas-table { font-size: 0.85rem; }
     }
   `]
 })

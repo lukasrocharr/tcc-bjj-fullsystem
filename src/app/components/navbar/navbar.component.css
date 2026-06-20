@@ -1,4 +1,16 @@
 /* NAVBAR */
+/* Mobile‑first header */
+.navbar-container {
+  width: 100%;
+}
+
+/* Ensure the sidenav appears over content */
+.mobile-menu {
+  width: 80%;
+}
+
+/* Hide default nav‑links on small screens – already in media query, keep */
+
 #navbar {
   position: fixed; 
   top: 0; 

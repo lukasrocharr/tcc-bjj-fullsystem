@@ -18,18 +18,13 @@
       </button>
       <a href="#contato" class="btn btn-gold nav-cta">Matricule-se</a>
     </div>
-    <div class="hamburger" 
-         [class.open]="isMenuOpen"
-         (click)="toggleMobileMenu()" 
-         id="hamburger">
+    <div class="hamburger" [class.open]="isMenuOpen" (click)="toggleMobileMenu()" id="hamburger">
       <span></span><span></span><span></span>
     </div>
   </div>
 </header>
 
-<nav class="mobile-menu" 
-     [class.open]="isMenuOpen"
-     id="mobileMenu">
+<nav class="mobile-menu" [class.open]="isMenuOpen" id="mobileMenu">
   <a href="#sobre" (click)="closeMobileMenu()">Sobre</a>
   <a href="#modalidades" (click)="closeMobileMenu()">Modalidades</a>
   <a href="#loja" (click)="closeMobileMenu()">Loja</a>

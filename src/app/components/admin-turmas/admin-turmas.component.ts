@@ -11,7 +11,7 @@ import { ADMIN_CRUD_STYLES } from '../admin-shared.styles';
   standalone: true,
   imports: [CommonModule, FormsModule],
   template: `
-    <div class="page">
+    <div class="page admin-turmas-container">
       <div class="page-header">
         <div>
           <h1>Gestão de Turmas</h1>

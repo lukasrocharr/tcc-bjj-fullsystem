@@ -10,7 +10,7 @@ import { ADMIN_CRUD_STYLES } from '../admin-shared.styles';
   standalone: true,
   imports: [CommonModule, FormsModule],
   template: `
-    <div class="page">
+    <div class="page admin-frequencia-container">
       <div class="page-header">
         <div>
           <h1>Frequência</h1>
@@ -74,7 +74,17 @@ import { ADMIN_CRUD_STYLES } from '../admin-shared.styles';
       </div>
     </div>
   `,
-  styles: [ADMIN_CRUD_STYLES + `
+  styles: [ADMIN_CRUD_STYLES, `
+    .admin-frequencia-container .tabela-section { overflow-x:auto; }
+    .admin-frequencia-container table { min-width:600px; }
+    @media (max-width: 768px) { .admin-frequencia-container .tabela-section { padding:0.5rem; } }
+    @media (max-width: 576px) {
+      .admin-frequencia-container .form-row { flex-direction:column; gap:0.75rem; }
+      .admin-frequencia-container .form-group { width:100%; }
+      .admin-frequencia-container .form-actions { justify-content:stretch; }
+      .admin-frequencia-container .btn-salvar { width:100%; }
+    }
+    ` + `
     .alunos-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: .5rem; max-height: 320px; overflow-y: auto; padding: .5rem; border: 1px solid #eee; border-radius: 8px; }
   `]
 })

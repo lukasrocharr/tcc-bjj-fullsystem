@@ -9,7 +9,7 @@ import { ADMIN_CRUD_STYLES } from '../admin-shared.styles';
   standalone: true,
   imports: [CommonModule, FormsModule],
   template: `
-    <div class="page">
+    <div class="page admin-comunicados-container">
       <div class="page-header">
         <div>
           <h1>Comunicados</h1>
@@ -50,7 +50,9 @@ import { ADMIN_CRUD_STYLES } from '../admin-shared.styles';
       </div>
     </div>
   `,
-  styles: [ADMIN_CRUD_STYLES]
+  styles: [ADMIN_CRUD_STYLES + `
+    @media (max-width: 576px) { .form-row { grid-template-columns: 1fr; } }
+  `]
 })
 export class AdminComunicadosComponent {
   papeis: PapelAlvo[] = ['ALUNO', 'PROFESSOR', 'ADMIN'];

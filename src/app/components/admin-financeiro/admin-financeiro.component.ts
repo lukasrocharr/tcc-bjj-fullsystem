@@ -11,7 +11,7 @@ import { ADMIN_CRUD_STYLES } from '../admin-shared.styles';
   standalone: true,
   imports: [CommonModule, FormsModule],
   template: `
-    <div class="page">
+    <div class="page admin-financeiro-container">
       <div class="page-header">
         <div>
           <h1>Gestão Financeira</h1>

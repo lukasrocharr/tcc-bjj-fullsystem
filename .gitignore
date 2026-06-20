@@ -42,3 +42,10 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+# Additional ignores for this project
+node_modules/
+dist/
+.angular/
+build.log
+.env
+application-local.yml

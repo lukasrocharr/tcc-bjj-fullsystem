@@ -10,7 +10,7 @@ import { ADMIN_CRUD_STYLES } from '../admin-shared.styles';
   standalone: true,
   imports: [CommonModule, FormsModule],
   template: `
-    <div class="page">
+    <div class="page portal-checkin">
       <div class="page-header"><div><h1>Check-in</h1><p>Registre sua presença na aula de hoje</p></div></div>
 
       <div class="alert error" *ngIf="erro">⚠️ {{ erro }}</div>
@@ -45,7 +45,34 @@ import { ADMIN_CRUD_STYLES } from '../admin-shared.styles';
       </div>
     </div>
   `,
-  styles: [ADMIN_CRUD_STYLES + `.alert.ok{background:#dcfce7;border:1px solid #bbf7d0;color:#166534;padding:.75rem 1rem;border-radius:8px;margin-bottom:1rem;}`]
+  styles: [ADMIN_CRUD_STYLES + `.alert.ok{background:#dcfce7;border:1px solid #bbf7d0;color:#166534;padding:.75rem 1rem;border-radius:8px;margin-bottom:1rem;}`,
+    `
+    /* Portal Check‑in specific responsive styles */
+    .portal-checkin .form-section { display: flex; flex-direction: column; gap: 1rem; }
+    .portal-checkin .form-group.full { width: 100%; }
+    .portal-checkin select, .portal-checkin button { width: 100%; }
+    .portal-checkin .form-actions { justify-content: stretch; }
+    .portal-checkin .tabela-section { overflow-x: auto; }
+    .portal-checkin table { min-width: 600px; }
+    @media (max-width: 576px) {
+      .portal-checkin .form-section { gap: 0.5rem; }
+      .portal-checkin table, .portal-checkin thead, .portal-checkin tbody, .portal-checkin tr, .portal-checkin td, .portal-checkin th { display: block; width: 100%; }
+      .portal-checkin thead { display: none; }
+      .portal-checkin tr { margin-bottom: 1rem; border: 1px solid #eee; padding: 0.5rem; }
+      .portal-checkin td { text-align: right; padding-left: 50%; position: relative; }
+      .portal-checkin td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 0;
+        width: 45%;
+        padding-left: 0.5rem;
+        font-weight: 600;
+        text-align: left;
+        color: #666;
+      }
+    }
+    `]
+
 })
 export class PortalCheckinComponent implements OnInit {
   turmas: Turma[] = [];
